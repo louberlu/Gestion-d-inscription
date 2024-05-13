@@ -1,0 +1,22 @@
+
+ table {
+            border-collapse: collapse;
+            width:"90%";
+        }
+
+        td , th{
+            border: 1px solid red;
+            padding: 8px;
+            vertical-align: top; /* Ajustement de l'alignement vertical */
+        }
+
+        /* Appliquer une marge gauche à zéro pour les listes */
+        ul, ol {
+            margin-left: 0;
+            padding-left: 20px; /* Ajustez cet espace pour aligner les puces ou les numéros à l'intérieur de la cellule */
+        }
+		
+		h2 {
+			 padding:20px;
+			
+		}

@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu de Gestion</title>
-    <link rel="stylesheet" href=#style.css>
-	<link rel="stylesheet" href=#Tableau.css>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
 	<nav>
         <ul>
+            <li><a href="index.php">Accueil</a></li>
             <li>Inscription
                 <ul>
                     <li><a href=#nouvelleInscription>Nouvelle Inscription</a></li>
@@ -21,8 +21,10 @@
             </li>
             <li>Candidature
                 <ul>
-                    <li><a href=#nouvelleCandidature>Afficher</a></li>
-                    <li><a href=#listeCandidat>Liste des candidats</a></li>
+                    <li><a href='newcandidat.php'>Nouveau Candidat</a></li>
+                    <li><a href='updatecandidat.php'>Modifier une candidature</a></li>
+                    <li><a href='validatecandidats.php'>Valider des candidatures</a></li>
+                    <li><a href='listecandidat.php'>Liste des candidats</a></li>
                 </ul>
             </li>
             <li><a href="#"> Étudiant</a>
@@ -37,5 +39,3 @@
         </ul>
     </nav>
     </header>
-</body>
-</html>
