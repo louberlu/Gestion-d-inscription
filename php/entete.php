@@ -24,7 +24,8 @@
                     <li><a href='newcandidat.php'>Nouveau Candidat</a></li>
                     <li><a href='updatecandidat.php'>Modifier une candidature</a></li>
                     <li><a href='validatecandidats.php'>Valider des candidatures</a></li>
-                    <li><a href='listecandidat.php'>Liste des candidats</a></li>
+                    <li><a href='deletecandidat.php'>Supprimer une candidature</a></li>
+                    <li><a href='listecandidat.php'>Liste des candidatures</a></li>
                 </ul>
             </li>
             <li><a href="#"> Étudiant</a>

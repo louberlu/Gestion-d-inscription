@@ -26,9 +26,10 @@
                     $_dnais = $ligne[5];
                 }
             }
-            if(isset($_POST['maj'])){
-                $req = 'update Candidature set nom = $_nom, prenom = $_prenom, tel = $_tel, $_adr = $_adr, email = $_email, date_naissance where id_candidature = $_idc';
-                $exec = $bdd->exec($req);
+            if(isset($_POST['del'])){
+                $req = '';
+                $res = $bdd->prepare($req);
+                $exec = $res->execute([$_nom, $_prenom, $_tel, $_adr, $_email, $_dnais]);
                 if($exec){
                     echo "<p> Données modifiée </p>";
                 }else{
@@ -38,7 +39,7 @@
         ?>
     </main>
 
-    <form action="updatecandidat.php" method="post">
+    <form action="deletecandidat.php" method="post">
             <table>
                 <tr>
                     <td><label for="id_cand">Id de candidature *:</label></td>
@@ -77,7 +78,7 @@
                 
                 <tr>
                     <td><input type="submit" name="ok" value="Rechercher"><td>
-                    <td><input type="submit" name="maj" value="Modifier"></td>
+                    <td><input type="submit" name="del" value="Supprimer"></td>
                 </tr>
             </table>
         </form>
