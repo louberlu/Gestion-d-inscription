@@ -1,6 +1,6 @@
 
-<?php include 'entete.php'; ?>
+<?php include 'view/entete.php'; ?>
     <main>
         <h1>Page d'Accueil</h1>
     </main>
-<?php include 'footer.php'; ?>
+<?php include 'view/footer.php'; ?>
