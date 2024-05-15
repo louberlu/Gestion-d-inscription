@@ -1,0 +1,10 @@
+<?php
+require 'config.php';
+
+// maintenant, vous pouvez utiliser $pdo pour interagir avec la base de données
+$stmt = $pdo->query('SELECT * FROM ma_table');
+while ($row = $stmt->fetch())
+{
+    echo $row['nom'] . "\n";
+}
+?>
