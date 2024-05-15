@@ -10,7 +10,7 @@
     <header>
 	<nav>
         <ul>
-            <li><a href="../index.php">Accueil</a></li>
+            <li><a href="index.php">Accueil</a></li>
             <li>Inscription
                 <ul>
                     <li><a href=#nouvelleInscription>Nouvelle Inscription</a></li>
