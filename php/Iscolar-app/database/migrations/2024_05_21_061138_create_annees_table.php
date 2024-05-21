@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('annees', function (Blueprint $table) {
-            $table->id();
+            $table->foreignIdFor(\App\Models\Inscription::class)->primary();
+            $table->foreignIdFor(\App\Models\Etudiant::class)->primary();
             $table->timestamps();
         });
     }

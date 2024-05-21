@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
+            $table->date('date_inscription');
+            $table->foreignIdFor(\App\Models\Candidat::class);
             $table->timestamps();
         });
     }
