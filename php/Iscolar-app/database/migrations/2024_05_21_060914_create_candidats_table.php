@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('candidats', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
+            $table->string('prenom');
+            $table->date('date_naissance');
+            $table->string('adresse');
+            $table->integer('tel');
+            $table->string('email');
+            $table->foreignIdFor(\App\Models\Cursus::class);
             $table->timestamps();
         });
     }

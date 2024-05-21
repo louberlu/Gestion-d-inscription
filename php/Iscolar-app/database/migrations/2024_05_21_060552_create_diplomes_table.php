@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('diplomes', function (Blueprint $table) {
             $table->id();
+            $table->string('nom_diplome');
+            $table->string('lien');
+            $table->foreignIdFor(\App\Models\Candidat::class);
             $table->timestamps();
         });
     }
