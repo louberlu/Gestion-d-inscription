@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('adresse');
             $table->integer('tel');
             $table->string('email');
+            $table->string('nationalite');
+            $table->string('sexe');
+            $table->string('lieu_naissance');
             $table->foreignIdFor(\App\Models\Cursus::class);
             $table->timestamps();
         });
