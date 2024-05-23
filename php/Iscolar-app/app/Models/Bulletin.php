@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Bulletin extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'lien'
+    ];
+
+    public function candidat(){
+        return $this->belongsTo(Candidat::class);
+    }
 }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('bulletins', function (Blueprint $table) {
             $table->id();
             $table->string('lien');
+            $table->foreignIdFor(\App\models\Candidat::class);
             $table->timestamps();
         });
     }

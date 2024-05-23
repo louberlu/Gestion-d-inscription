@@ -12,4 +12,9 @@ class Cursus extends Model
     protected $fillable = [
         'nom_cursus', 'description_cursus'
     ];
+
+    public function candidat(){
+        return $this->hasMany(Candidat::class);
+    }
+
 }

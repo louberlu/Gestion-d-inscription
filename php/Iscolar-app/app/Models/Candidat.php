@@ -17,4 +17,14 @@ class Candidat extends Model
         return $this->belongsTo(Cursus::class);
     }
 
+    public function diplome(){
+        return $this->hasMany(Diplome::class);
+    }
+    public function bulletin(){
+        return $this->hasMany(Bulletin::class);
+    }
+
+    public function inscription(){
+        return $this->hasOne(Inscription::class);
+    }
 }

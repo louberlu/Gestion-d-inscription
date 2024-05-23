@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 29 avr. 2024 à 17:17
+-- Généré le : jeu. 23 mai 2024 à 15:05
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `bulletins` (
   `id_bulletin` int(11) NOT NULL,
   `lien` varchar(100) NOT NULL,
-  `id_inscription` int(11) NOT NULL
+  `id_candidature` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -45,11 +45,14 @@ CREATE TABLE `candidatures` (
   `prenom` varchar(30) NOT NULL,
   `tel` int(9) NOT NULL,
   `adresse` varchar(55) NOT NULL,
-  `email` varchar(55) NOT NULL,
+  `email` varchar(55) DEFAULT NULL,
   `date_naissance` date NOT NULL,
   `date_candidature` date NOT NULL,
-  `status` varchar(11) NOT NULL,
-  `id_cursus` int(11) NOT NULL
+  `status` varchar(11) DEFAULT NULL,
+  `id_cursus` int(11) NOT NULL,
+  `nationalite` varchar(30) NOT NULL,
+  `sexe` varchar(10) NOT NULL,
+  `lieu_naissance` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -64,6 +67,14 @@ CREATE TABLE `cursus` (
   `description_cursus` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Déchargement des données de la table `cursus`
+--
+
+INSERT INTO `cursus` (`id_cursus`, `nom_cursus`, `description_cursus`) VALUES
+(1, 'APLP', 'Les deux première années sont le cursus analyste programmeur avec à la clé un diplôme de DUT en Informatique.\r\nEnsuite la troisième année est la licence professionnel.'),
+(2, 'ING', 'Il s\'agit du cycle ingénieur qui se fait en trois année. A la fin de ce cursus, l\'étudiant obtient un diplôme d\'ingénieur en conception informatique.');
+
 -- --------------------------------------------------------
 
 --
@@ -74,7 +85,7 @@ CREATE TABLE `diplomes` (
   `id_diplome` int(11) NOT NULL,
   `nom_diplome` varchar(30) NOT NULL,
   `description_diplome` text NOT NULL,
-  `id_inscription` int(11) NOT NULL
+  `id_candidature` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -85,7 +96,8 @@ CREATE TABLE `diplomes` (
 
 CREATE TABLE `inscriptions` (
   `id_inscription` int(11) NOT NULL,
-  `id_candidature` int(11) NOT NULL
+  `id_candidature` int(11) NOT NULL,
+  `date_inscription` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -97,13 +109,14 @@ CREATE TABLE `inscriptions` (
 --
 ALTER TABLE `bulletins`
   ADD PRIMARY KEY (`id_bulletin`),
-  ADD KEY `fk_inscriptionBulletin` (`id_inscription`);
+  ADD KEY `fk_candidatureBulletin` (`id_candidature`);
 
 --
 -- Index pour la table `candidatures`
 --
 ALTER TABLE `candidatures`
-  ADD PRIMARY KEY (`id_candidature`);
+  ADD PRIMARY KEY (`id_candidature`),
+  ADD KEY `fk_cursusInscription` (`id_cursus`);
 
 --
 -- Index pour la table `cursus`
@@ -116,7 +129,7 @@ ALTER TABLE `cursus`
 --
 ALTER TABLE `diplomes`
   ADD PRIMARY KEY (`id_diplome`),
-  ADD KEY `fk_inscriptionDiplome` (`id_inscription`);
+  ADD KEY `fk_candidatureDiplome` (`id_candidature`);
 
 --
 -- Index pour la table `inscriptions`
@@ -133,7 +146,13 @@ ALTER TABLE `inscriptions`
 -- AUTO_INCREMENT pour la table `candidatures`
 --
 ALTER TABLE `candidatures`
-  MODIFY `id_candidature` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_candidature` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `cursus`
+--
+ALTER TABLE `cursus`
+  MODIFY `id_cursus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `diplomes`
@@ -155,13 +174,19 @@ ALTER TABLE `inscriptions`
 -- Contraintes pour la table `bulletins`
 --
 ALTER TABLE `bulletins`
-  ADD CONSTRAINT `fk_inscriptionBulletin` FOREIGN KEY (`id_inscription`) REFERENCES `inscriptions` (`id_inscription`);
+  ADD CONSTRAINT `fk_candidatureBulletin` FOREIGN KEY (`id_candidature`) REFERENCES `candidatures` (`id_candidature`);
+
+--
+-- Contraintes pour la table `candidatures`
+--
+ALTER TABLE `candidatures`
+  ADD CONSTRAINT `fk_cursusInscription` FOREIGN KEY (`id_cursus`) REFERENCES `cursus` (`id_cursus`);
 
 --
 -- Contraintes pour la table `diplomes`
 --
 ALTER TABLE `diplomes`
-  ADD CONSTRAINT `fk_inscriptionDiplome` FOREIGN KEY (`id_inscription`) REFERENCES `inscriptions` (`id_inscription`);
+  ADD CONSTRAINT `fk_candidatureDiplome` FOREIGN KEY (`id_candidature`) REFERENCES `candidatures` (`id_candidature`);
 
 --
 -- Contraintes pour la table `inscriptions`
